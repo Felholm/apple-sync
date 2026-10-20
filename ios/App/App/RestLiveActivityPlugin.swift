@@ -20,7 +20,7 @@ public class RestLiveActivityPlugin: CAPPlugin, CAPBridgedPlugin {
     private var activity: Any?
 
     @objc func isSupported(_ call: CAPPluginCall) {
-        if #available(iOS 16.1, *) {
+        if #available(iOS 16.2, *) {
             call.resolve(["supported": ActivityAuthorizationInfo().areActivitiesEnabled])
         } else {
             call.resolve(["supported": false])
@@ -28,8 +28,8 @@ public class RestLiveActivityPlugin: CAPPlugin, CAPBridgedPlugin {
     }
 
     @objc func start(_ call: CAPPluginCall) {
-        guard #available(iOS 16.1, *) else {
-            return call.reject("Live Activities require iOS 16.1")
+        guard #available(iOS 16.2, *) else {
+            return call.reject("Live Activities require iOS 16.2")
         }
         let attrs = RestActivityAttributes(
             label: call.getString("label") ?? "Rest",
@@ -49,8 +49,8 @@ public class RestLiveActivityPlugin: CAPPlugin, CAPBridgedPlugin {
     }
 
     @objc func update(_ call: CAPPluginCall) {
-        guard #available(iOS 16.1, *) else {
-            return call.reject("Live Activities require iOS 16.1")
+        guard #available(iOS 16.2, *) else {
+            return call.reject("Live Activities require iOS 16.2")
         }
         guard let a = activity as? Activity<RestActivityAttributes> else { return call.resolve() }
         let state = Self.state(from: call)
@@ -59,8 +59,8 @@ public class RestLiveActivityPlugin: CAPPlugin, CAPBridgedPlugin {
     }
 
     @objc func end(_ call: CAPPluginCall) {
-        guard #available(iOS 16.1, *) else {
-            return call.reject("Live Activities require iOS 16.1")
+        guard #available(iOS 16.2, *) else {
+            return call.reject("Live Activities require iOS 16.2")
         }
         guard let a = activity as? Activity<RestActivityAttributes> else { return call.resolve() }
         activity = nil
