@@ -3,45 +3,50 @@
 A thin [Capacitor](https://capacitorjs.com/) shell that runs the deployed Devon
 Train PWA inside a native `WKWebView`. The web app stays the single codebase —
 server deploys reach the app instantly — while the shell unlocks the native
-APIs Safari withholds:
+APIs Safari withholds. **No Mac required anywhere in the loop.**
 
-- **CoreBluetooth** — pair a Polar H10 (or any BLE HR strap) directly to the
-  iPhone. Live per-beat HR anywhere — no Deck, no Polar Beat, no Health Auto
-  Export. Wired through `@capacitor-community/bluetooth-le`; the web app's
-  `hr.ts` detects the native bridge and uses it automatically.
-- **Background modes** — `bluetooth-central` + `audio` keep HR streaming and
-  rest timers alive with the phone locked.
-- **Real install** — App Store / sideload, icon, splash, deep links.
+## What the shell unlocks
+
+| Capability | Plugin | What it gives Devon Train |
+|---|---|---|
+| **CoreBluetooth** | `@capacitor-community/bluetooth-le` | Polar H10 pairs straight to the iPhone — per-beat live HR anywhere, no Deck/Polar Beat/HAE |
+| **HealthKit** | `@capgo/capacitor-health` | Reads Apple Health directly — watch/strap HR, weight, distance; replaces Health Auto Export |
+| **Local notifications** | `@capacitor/local-notifications` | "Rest over" alert fires locked/backgrounded — no server round-trip |
+| **Haptics** | `@capacitor/haptics` | Timer buzz through the Taptic Engine |
+| **Keep awake** | `@capacitor-community/keep-awake` | Screen stays on during workouts |
+| **Background modes** | `Info.plist` | `bluetooth-central` + `audio` — HR keeps streaming with the phone locked |
+| App plumbing | `@capacitor/app` | App lifecycle hooks |
+
+The web code detects the shell via `Capacitor.isNativePlatform()` and branches
+in `web/src/hr.ts` + `web/src/native.ts` — in a browser nothing changes.
 
 ## Layout
 
 | Path | What |
 |---|---|
-| `capacitor.config.json` | App id `net.felholm.devontrain`; `server.url` points the WebView at the live app (`CAP_SERVER_URL` overrides for dev) |
-| `ios/` | The Xcode project — `pod install` then open `App.xcworkspace` |
+| `capacitor.config.json` | App id `net.felholm.devontrain`; `server.url` → live app (devs override via `CAP_SERVER_URL`) |
+| `ios/` | Xcode project — `pod install`, open `App.xcworkspace` |
+| `ios/App/App/App.entitlements` | HealthKit capability |
 | `.github/workflows/ios.yml` | macOS runner → CocoaPods → `xcodebuild archive` → unsigned `.ipa` artifact |
 
-## Build locally (needs a Mac or xtool)
+## Build — zero Mac hardware
 
-```sh
-npm ci
-npx cap sync ios
-cd ios/App && pod install
-open App.xcworkspace   # Xcode
-```
+The GitHub Actions workflow builds on a rented `macos-latest` runner — grab
+`DevonTrain-unsigned-ipa` from the run artifacts.
 
-No Mac? The GitHub Actions workflow builds the unsigned `.ipa` on a
-`macos-latest` runner — grab it from the workflow artifacts.
+## Install on your iPhone — zero Mac
 
-## Signing / installing
+**SideStore** (open-source, free): install SideStore on the iPhone once via a
+computer (Windows/Linux works — AltServer runs on all three OSes), then it
+sideloads and signs `.ipa`s with your free Apple ID and **auto-refreshes the
+7-day cert in the background**. Feed it the CI-built `DevonTrain-unsigned.ipa`.
 
-- **Free Apple ID**: sideload via Xcode/`xtool` — works, but provisioning
-  expires every 7 days (re-sign weekly).
-- **Paid Developer account ($99/yr)**: proper provisioning, TestFlight,
-  App Store, APNs push. Bluetooth/HealthKit/GPS work on the free tier.
+Alternatives: AltStore/Sideloadly (same idea, manual refresh), or plug into
+Xcode/`xtool` if a Mac ever appears. A paid Developer account ($99/yr) is only
+needed for App Store distribution, TestFlight, or APNs remote push —
+Bluetooth, HealthKit, local notifications all work on the free tier.
 
 ## What stays in devon-train
 
-Everything. `web/src/hr.ts` already branches: native shell → CoreBluetooth,
-Chrome/Android → Web Bluetooth, otherwise → the server-side Deck bridge or the
-Health Auto Export ingest URL. This repo adds only the shell.
+Everything. The app code, offline outbox, sync, authz, timer, server-side BLE
+bridge, HAE ingest — all unchanged. This repo is just the shell.

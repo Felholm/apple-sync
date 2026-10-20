@@ -49,6 +49,8 @@
 	<string>Devon Train connects to your heart-rate strap (e.g. Polar H10) to show live heart rate and zones during workouts.</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>Devon Train connects to your heart-rate strap (e.g. Polar H10) to show live heart rate and zones during workouts.</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Devon Train reads heart rate, weight and activity from Apple Health to show live zones and auto-fill workout stats.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>bluetooth-central</string>
