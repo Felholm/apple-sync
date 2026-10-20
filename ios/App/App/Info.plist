@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+  <key>CAPACITOR_DEBUG</key>
+	<string>$(CAPACITOR_DEBUG)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -22,6 +24,25 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+    <false/>
+    <key>UISceneConfigurations</key>
+    <dict>
+      <key>UIWindowSceneSessionRoleApplication</key>
+      <array>
+        <dict>
+            <key>UISceneConfigurationName</key>
+            <string>Default Configuration</string>
+            <key>UISceneDelegateClassName</key>
+            <string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
+            <key>UISceneStoryboardFile</key>
+            <string>Main</string>
+        </dict>
+      </array>
+    </dict>
+	</dict>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -45,12 +66,16 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>NSSupportsLiveActivities</key>
+	<true/>
 	<key>NSBluetoothAlwaysUsageDescription</key>
 	<string>Devon Train connects to your heart-rate strap (e.g. Polar H10) to show live heart rate and zones during workouts.</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>Devon Train connects to your heart-rate strap (e.g. Polar H10) to show live heart rate and zones during workouts.</string>
 	<key>NSHealthShareUsageDescription</key>
 	<string>Devon Train reads heart rate, weight and activity from Apple Health to show live zones and auto-fill workout stats.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Devon Train saves finished workouts — heart rate and distance — to Apple Health so your training shows up in the Health app.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Devon Train records your route during workouts to show pace, distance and elevation on the session.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>

@@ -9,22 +9,23 @@
   },
   "dependencies": {
     "@capacitor-community/background-geolocation": "^1.2.26",
-    "@capacitor-community/bluetooth-le": "^7.3.2",
-    "@capacitor-community/keep-awake": "^7.1.0",
-    "@capacitor/app": "^7.1.2",
-    "@capacitor/camera": "^7.0.5",
-    "@capacitor/core": "^7.6.9",
-    "@capacitor/haptics": "^7.0.5",
-    "@capacitor/ios": "^7.6.9",
-    "@capacitor/keyboard": "^7.0.6",
-    "@capacitor/local-notifications": "^7.0.7",
-    "@capacitor/share": "^7.0.4",
-    "@capacitor/splash-screen": "^7.0.5",
-    "@capacitor/status-bar": "^7.0.6",
-    "@capgo/capacitor-health": "^7.2.15"
+    "@capacitor-community/bluetooth-le": "^8.3.0",
+    "@capacitor-community/keep-awake": "^8.0.1",
+    "@capacitor-community/text-to-speech": "^8.0.2",
+    "@capacitor/app": "^8.1.2",
+    "@capacitor/camera": "^8.2.6",
+    "@capacitor/core": "^8.5.3",
+    "@capacitor/haptics": "^8.0.2",
+    "@capacitor/ios": "^8.5.3",
+    "@capacitor/keyboard": "^8.0.6",
+    "@capacitor/local-notifications": "^8.3.1",
+    "@capacitor/share": "^8.0.3",
+    "@capacitor/splash-screen": "^8.0.2",
+    "@capacitor/status-bar": "^8.0.4",
+    "@capgo/capacitor-health": "^8.11.12"
   },
   "devDependencies": {
-    "@capacitor/cli": "^7.6.9",
+    "@capacitor/cli": "^8.5.3",
     "typescript": "^7.0.2"
   }
 }
