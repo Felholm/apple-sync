@@ -1,0 +1,12 @@
+{
+  "appId": "net.felholm.devontrain",
+  "appName": "Devon Train",
+  "webDir": "www",
+  "server": {
+    "url": "https://steam-deck.tailfe94db.ts.net:8446"
+  },
+  "ios": {
+    "contentInset": "never",
+    "scheme": "Devon Train"
+  }
+}

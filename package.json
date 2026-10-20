@@ -1,0 +1,19 @@
+{
+  "name": "apple-sync",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Native iOS wrapper for Devon Train — WKWebView shell unlocking CoreBluetooth (Polar H10), HealthKit and background execution",
+  "scripts": {
+    "sync": "cap sync ios",
+    "open:ios": "cap open ios"
+  },
+  "dependencies": {
+    "@capacitor-community/bluetooth-le": "^7.3.2",
+    "@capacitor/core": "^7.6.9",
+    "@capacitor/ios": "^7.6.9"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.6.9",
+    "typescript": "^7.0.2"
+  }
+}
