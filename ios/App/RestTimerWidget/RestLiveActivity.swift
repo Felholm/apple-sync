@@ -26,12 +26,12 @@ struct RestLiveActivityWidget: Widget {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(context.attributes.label)
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        .foregroundColor(.gray)
                     if s.over {
                         Text("GO").font(.title).bold()
                     } else if s.paused {
                         Text(Self.fmtMs(s.pausedLeftMs)).font(.title).bold().monospacedDigit()
-                            + Text(" paused").font(.caption).foregroundStyle(.secondary)
+                            + Text(" paused").font(.caption).foregroundColor(.gray)
                     } else {
                         Text(timerInterval: countdownRange(s), countsDown: true)
                             .font(.title).bold().monospacedDigit()
@@ -42,10 +42,10 @@ struct RestLiveActivityWidget: Widget {
                     VStack(alignment: .trailing, spacing: 2) {
                         Text("\(s.bpm)")
                             .font(.title2).bold().monospacedDigit()
-                            .foregroundStyle(s.zone >= 1 && s.zone <= 5 ? zoneColor[s.zone - 1] : .primary)
+                            .foregroundColor(s.zone >= 1 && s.zone <= 5 ? zoneColor[s.zone - 1] : Color.white)
                         Text(s.zone > 0 ? "Z\(s.zone) · bpm" : "bpm")
                             .font(.caption2)
-                            .foregroundStyle(.secondary)
+                            .foregroundColor(.gray)
                     }
                 }
             }
